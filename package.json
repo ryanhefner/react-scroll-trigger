@@ -1,0 +1,32 @@
+{
+  "name": "react-scroll-trigger",
+  "version": "0.1.0",
+  "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
+  "keywords": [
+    "react",
+    "react-component",
+    "scroll",
+    "trigger"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "compile": "babel -d ./ src/",
+    "prepublish": "npm run compile",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git@github.com:ryanhefner/react-scroll-trigger.git",
+  "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
