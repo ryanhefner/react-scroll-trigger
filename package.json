@@ -1,32 +1,69 @@
 {
   "name": "react-scroll-trigger",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "license": "MIT",
   "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
+  "repository": "ryanhefner/react-scroll-trigger",
+  "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
+  "files": [
+    "index.js",
+    "es",
+    "umd"
+  ],
+  "directories": {
+    "lib": "/src"
+  },
+  "main": "index.js",
+  "module": "es/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "clean": "rm -f index.js && rm -rf es && rm -rf umd",
+    "prebuild": "npm run clean",
+    "build": "node ./tools/build.js",
+    "watch": "babel ./src -d . --ignore __tests__ --watch",
+    "prepare": "npm run build",
+    "prepublishOnly": "node ./tools/build.js",
+    "push-release": "git push origin master && git push --tags",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": ">=15"
+  },
+  "dependencies": {
+    "clean-react-props": "^0.1.0",
+    "lodash.throttle": "^4.1.1",
+    "prop-types": "^15.5.10",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "gzip-size": "^3.0.0",
+    "jest": "^20.0.4",
+    "pretty-bytes": "^4.0.2",
+    "react": "^15.6.1",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^4.3.1"
+  },
+  "browserify": {
+    "transform": [
+      "loose-envify"
+    ]
+  },
   "keywords": [
     "react",
     "react-component",
     "scroll",
     "trigger"
-  ],
-  "main": "index.js",
-  "scripts": {
-    "compile": "babel -d ./ src/",
-    "prepublish": "npm run compile",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "git@github.com:ryanhefner/react-scroll-trigger.git",
-  "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1"
-  },
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
-  }
+  ]
 }

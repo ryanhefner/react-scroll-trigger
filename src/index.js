@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import omit from 'lodash/omit';
-import throttle from 'lodash/throttle';
+import throttle from 'lodash.throttle';
+import cleanProps from 'clean-react-props';
 
 class ScrollTrigger extends Component {
 
@@ -123,16 +123,9 @@ class ScrollTrigger extends Component {
       children,
     } = this.props;
 
-    const props = omit(this.props, [
-      'onEnter',
-      'onExit',
-      'onProgress',
-      'triggerOnLoad',
-    ]);
-
     return (
       <div
-        {...props}
+        {...cleanProps(this.props)}
         ref={(element) => {
           this.element = element;
         }}

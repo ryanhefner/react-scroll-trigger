@@ -1,4 +1,8 @@
 .DS_Store
-node_modules/
+es
+node_modules
+umd
+/*.js
+!rollup.config.js
 *.sublime-project
 *.sublime-workspace
