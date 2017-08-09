@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-trigger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
   "repository": "ryanhefner/react-scroll-trigger",
@@ -30,7 +30,7 @@
     "react": ">=15"
   },
   "dependencies": {
-    "clean-react-props": "^0.1.0",
+    "clean-react-props": "^0.1.1",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.10",
     "react-dom": "^15.6.1"
