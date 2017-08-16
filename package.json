@@ -6,8 +6,9 @@
   "repository": "ryanhefner/react-scroll-trigger",
   "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
   "files": [
-    "index.js",
     "es",
+    "index.js",
+    "src",
     "umd"
   ],
   "directories": {
@@ -31,6 +32,7 @@
   },
   "dependencies": {
     "clean-react-props": "^0.1.1",
+    "lodash.omit": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.10",
     "react-dom": "^15.6.1"
