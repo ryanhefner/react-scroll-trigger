@@ -1,4 +1,4 @@
-# React Scroll Trigger
+# react-scroll-trigger
 
 React component that monitors `scroll` events to trigger callbacks when it enters,
 exits and progresses through the viewport. All callback include the `progress` and
@@ -8,25 +8,20 @@ those values.
 ## Install
 
 Via [npm](https://npmjs.com/package/react-scroll-trigger)
-```
+
+```sh
 npm install react-scroll-trigger
 ```
 
 Via [Yarn](http://yarn.fyi/react-scroll-trigger)
-```
+
+```sh
 yarn add react-scroll-trigger
 ```
 
-### Requirements
-
-* [react](https://npmjs.com/package/react)
-* [react-dom](https://npmjs.com/package/react-dom)
-* [prop-types](https://npmjs.com/package/prop-types)
-* [lodash](https://npmjs.com/package/lodash)
-
 ## How to use
 
-```
+```js
 import ScrollTrigger from 'react-scroll-trigger';
 
 ...
@@ -59,14 +54,14 @@ import ScrollTrigger from 'react-scroll-trigger';
 The `ScrollTrigger` is intended to be used as a composable element, allowing you
 to either use it standalone within a page (ie. no children).
 
-```
+```js
   <ScrollTrigger onEnter={this.onEnterViewport} onExit={this.onExitViewport} />
 ```
 
 Or, pass in children to receive events and `progress` based on the dimensions of
 those elements within the DOM.
 
-```
+```js
   <ScrollTrigger onEnter={this.onEnterViewport} onExit={this.onExitViewport}>
     <List>
       [...list items...]
