@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import omit from 'lodash.omit';
@@ -74,9 +74,9 @@ class ScrollTrigger extends Component {
     if (inViewport) {
       const progress = Math.max(0, Math.min(1, 1 - (elementRect.bottom / (viewportEnd + elementRect.height))));
 
-      if (!this.state.inViewPort) {
+      if (!this.state.inViewport) {
         this.setState({
-          inViewport: inViewport,
+          inViewport,
         });
 
         onEnter({
