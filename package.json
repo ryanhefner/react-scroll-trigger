@@ -28,14 +28,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "react": ">=15"
+    "react": ">=15",
+    "react-dom": ">=15"
   },
   "dependencies": {
     "clean-react-props": "^0.1.1",
     "lodash.omit": "^4.5.0",
     "lodash.throttle": "^4.1.1",
-    "prop-types": "^15.5.10",
-    "react-dom": "^15.6.1"
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
