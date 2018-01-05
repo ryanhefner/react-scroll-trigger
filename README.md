@@ -89,4 +89,4 @@ be rendered by the `ScrollTrigger`.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © [Ryan Hefner](https://www.ryanhefner.com)
