@@ -21,9 +21,11 @@ const config = {
   ],
   external: [
     'react',
+    'react-dom',
   ],
   globals: {
     'react': 'React',
+    'react-dom': 'ReactDOM',
   },
   dest: './index.js',
   banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
