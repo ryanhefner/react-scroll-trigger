@@ -63,7 +63,8 @@ class ScrollTrigger extends Component {
     const element = ReactDOM.findDOMNode(this.element);
     const elementRect = element.getBoundingClientRect();
     const viewportStart = 0;
-    const viewportEnd = document.body.clientHeight;
+    const scrollingElement = document.scrollingElement || document.body;
+    const viewportEnd = scrollingElement.clientHeight;
     const inViewport = elementRect.top < viewportEnd && elementRect.bottom > viewportStart;
 
     const position = window.scrollY;
