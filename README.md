@@ -86,6 +86,8 @@ be rendered by the `ScrollTrigger`.
 * `onEnter` - Callback `({progress, velocity}, ref) => {}`
 * `onExit` - Callback `({progress, velocity}, ref) => {}`
 * `onProgress` - Callback `({progress, velocity}, ref) => {}`
+* `onEnterTop` - Callback `({progress, velocity}, ref) => {}`
+* `onEnterBottom` - Callback `({progress, velocity}, ref) => {}`
 
 ## License
 
