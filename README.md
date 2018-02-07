@@ -82,6 +82,9 @@ In addition to these properties, all other standard React properites like `class
 `key`, etc. can be passed in as well and will be applied to the `<div>` that will
 be rendered by the `ScrollTrigger`.
 
+* `component` - Node (Default: `div`)
+* `throttleResize` - Number (Default: `100`)
+* `throttleScroll` - Number (Default: `100`)
 * `triggerOnLoad` - Boolean (Default: `true`)
 * `onEnter` - Callback `({progress, velocity}, ref) => {}`
 * `onExit` - Callback `({progress, velocity}, ref) => {}`
