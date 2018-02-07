@@ -33,8 +33,8 @@
   },
   "dependencies": {
     "clean-react-props": "^0.1.1",
-    "lodash.omit": "^4.5.0",
     "lodash.throttle": "^4.1.1",
+    "lomit": "^0.1.1",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
@@ -51,9 +51,9 @@
     "react": "^15.6.1",
     "rollup": "^0.45.2",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-json": "^2.3.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-watch": "^4.3.1"
   },
