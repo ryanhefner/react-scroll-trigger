@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import omit from 'lodash.omit';
+import omit from 'lomit';
 import throttle from 'lodash.throttle';
 import cleanProps from 'clean-react-props';
 
@@ -10,11 +10,11 @@ class ScrollTrigger extends Component {
   constructor(props) {
     super(props);
 
-    this.onScroll = throttle(this.onScroll.bind(this), 100, {
+    this.onScroll = throttle(this.onScroll.bind(this), props.throttleScroll, {
       trailing: false,
     });
 
-    this.onResize = throttle(this.onResize.bind(this), 100, {
+    this.onResize = throttle(this.onResize.bind(this), props.throttleResize, {
       trailing: false,
     });
 
@@ -32,6 +32,18 @@ class ScrollTrigger extends Component {
 
     if (this.props.triggerOnLoad) {
       this.checkStatus();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.throttleScroll !== this.props.throttleScroll) {
+      this.onScroll = throttle(this.onScroll.bind(this, nextProps.throttleScroll));
+      addEventListener('scroll', this.onScroll);
+    }
+
+    if (nextProps.throttleResize !== this.props.throttleResize) {
+      this.onResize = throttle(this.onResize.bind(this, nextProps.throttleResize));
+      addEventListener('resize', this.onResize);
     }
   }
 
@@ -123,22 +135,24 @@ class ScrollTrigger extends Component {
   render() {
     const {
       children,
+      component,
     } = this.props;
 
-    return (
-      <div
-        {...omit(cleanProps(this.props), ['onProgress'])}
-        ref={(element) => {
+    return React.createElement(component, {
+        ...omit(cleanProps(this.props), ['onProgress']),
+        ref: (element) => {
           this.element = element;
-        }}
-      >
-        {children}
-      </div>
+        },
+      },
+      children,
     );
   }
 }
 
 ScrollTrigger.propTypes = {
+  component: PropTypes.node,
+  throttleResize: PropTypes.number,
+  throttleScroll: PropTypes.number,
   triggerOnLoad: PropTypes.bool,
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
@@ -146,6 +160,9 @@ ScrollTrigger.propTypes = {
 };
 
 ScrollTrigger.defaultProps = {
+  component: 'div',
+  throttleResize: 100,
+  throttleScroll: 100,
   triggerOnLoad: true,
   onEnter: () => {},
   onExit: () => {},
