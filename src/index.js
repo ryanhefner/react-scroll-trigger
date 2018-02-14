@@ -23,6 +23,7 @@ class ScrollTrigger extends Component {
       progress: 0,
       lastScrollPosition: null,
       lastScrollTime: null,
+      scrollingDown: false
     };
   }
 
@@ -65,6 +66,8 @@ class ScrollTrigger extends Component {
       onEnter,
       onExit,
       onProgress,
+      onEnterTop,
+      onEnterBottom,
     } = this.props;
 
     const {
@@ -84,6 +87,10 @@ class ScrollTrigger extends Component {
       ? Math.abs((lastScrollPosition - position) / (lastScrollTime - Date.now()))
       : null;
 
+    this.setState({
+      scrollingDown: lastScrollPosition > position
+    });
+
     if (inViewport) {
       const progress = Math.max(0, Math.min(1, 1 - (elementRect.bottom / (viewportEnd + elementRect.height))));
 
@@ -96,6 +103,18 @@ class ScrollTrigger extends Component {
           progress,
           velocity,
         }, this);
+
+        if (this.state.scrollingDown && onEnterTop) {
+          onEnterTop({
+            progress: progress,
+            velocity: velocity
+          }, this);
+        } else if (onEnterBottom) {
+          onEnterBottom({
+            progress,
+            velocity,
+          }, this);
+        }
       }
 
       this.setState({
