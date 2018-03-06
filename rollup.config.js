@@ -6,9 +6,22 @@ import uglify from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
 const config = {
-  entry: 'src/index.js',
-  format: 'umd',
-  moduleName: 'react-scroll-trigger',
+  input: 'src/index.js',
+  output: {
+    name: 'react-scroll-trigger',
+    file: './index.js',
+    format: 'umd',
+    globals: {
+      'react': 'React',
+      'react-dom': 'ReactDOM',
+    },
+    banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
+    footer: '/* follow me on Twitter! @ryanhefner */',
+  },
+  external: [
+    'react',
+    'react-dom',
+  ],
   plugins: [
     babel({
       exclude: 'node_modules/**',
@@ -19,17 +32,6 @@ const config = {
     }),
     json(),
   ],
-  external: [
-    'react',
-    'react-dom',
-  ],
-  globals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-  },
-  dest: './index.js',
-  banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
-  footer: '/* follow me on Twitter! @ryanhefner */',
 };
 
 if (process.env.NODE_ENV === 'production') {
