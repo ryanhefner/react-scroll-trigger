@@ -82,13 +82,13 @@ In addition to these properties, all other standard React properites like `class
 `key`, etc. can be passed in as well and will be applied to the `<div>` that will
 be rendered by the `ScrollTrigger`.
 
-* `component` - Node (Default: `div`)
-* `throttleResize` - Number (Default: `100`)
-* `throttleScroll` - Number (Default: `100`)
-* `triggerOnLoad` - Boolean (Default: `true`)
-* `onEnter` - Callback `({progress, velocity}, ref) => {}`
-* `onExit` - Callback `({progress, velocity}, ref) => {}`
-* `onProgress` - Callback `({progress, velocity}, ref) => {}`
+* `component:Element | String` - React component or HTMLElement to render as the wrapper for the `ScrollTrigger` (Default: `div`)
+* `throttleResize:Number` - Delay to throttle `resize` calls in milliseconds (Default: `100`)
+* `throttleScroll:Number` - Delay to throttle `scroll` calls in milliseconds (Default: `100`)
+* `triggerOnLoad:Boolean` - Whether or not to trigger the `onEnter` callback on mount (Default: `true`)
+* `onEnter:Function` - Called when the component enters the viewport `({progress, velocity}, ref) => {}`
+* `onExit:Function` - Called when the component exits the viewport `({progress, velocity}, ref) => {}`
+* `onProgress:Function` - Called while the component progresses through the viewport `({progress, velocity}, ref) => {}`
 
 ## License
 
