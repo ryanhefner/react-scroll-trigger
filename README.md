@@ -1,5 +1,7 @@
 # react-scroll-trigger
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ryanhefner/react-scroll-trigger.svg)](https://greenkeeper.io/)
+
 React component that monitors `scroll` events to trigger callbacks when it enters,
 exits and progresses through the viewport. All callback include the `progress` and
 `velocity` of the scrolling, in the event you want to manipulate stuff based on
