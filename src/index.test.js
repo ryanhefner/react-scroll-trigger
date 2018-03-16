@@ -11,254 +11,252 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe('ScrollTrigger component', () => {
-  let component;
+let component;
 
-  beforeEach(() => {
-    window.Element.prototype.getBoundingClientRect = () => {
-      return {
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-      };
+beforeEach(() => {
+  window.Element.prototype.getBoundingClientRect = () => {
+    return {
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
     };
+  };
+});
+
+test('ScrollTrigger should render a div', () => {
+  component = mount(<ScrollTrigger />, {
+    attachTo: document.getElementById('root'),
+  });
+  expect(component.contains(<div></div>)).toBe(true);
+  component.unmount();
+});
+
+test('ScrollTrigger should render a specified component', () => {
+  component = mount(<ScrollTrigger component="section" />, {
+    attachTo: document.getElementById('root'),
+  });
+  expect(component.contains(<section></section>)).toBe(true);
+  component.unmount();
+});
+
+test('ScrollTrigger fires onEnter when loaded', () => {
+  let onEnterFired = false;
+  const onEnter = () => {
+    onEnterFired = true;
+  };
+  component = mount(<ScrollTrigger onEnter={onEnter} />, {
+    attachTo: document.getElementById('root'),
+  });
+  expect(onEnterFired).toBe(true);
+  component.unmount();
+});
+
+test('ScrollTrigger _does not_ fire onEnter when loaded with triggerOnLoad = false', () => {
+  let onEnterFired = false;
+  const onEnter = () => {
+    onEnterFired = true;
+  };
+  component = mount(<ScrollTrigger onEnter={onEnter} triggerOnLoad={false} />, {
+    attachTo: document.getElementById('root'),
+  });
+  expect(onEnterFired).toBe(false);
+  component.unmount();
+});
+
+test('ScrollTrigger _does not_ fire onEnter when loaded outside of viewport', () => {
+  window.resizeTo(1024, 768);
+  window.Element.prototype.getBoundingClientRect = () => {
+    return {
+      left: 0,
+      top: 1572,
+      right: 0,
+      bottom: 0,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    };
+  };
+
+  let onEnterFired = false;
+  const onEnter = () => {
+    onEnterFired = true;
+  };
+
+  component = mount(<ScrollTrigger onEnter={onEnter} />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger should render a div', () => {
-    component = mount(<ScrollTrigger />, {
-      attachTo: document.getElementById('root'),
-    });
-    expect(component.contains(<div></div>)).toBe(true);
-    component.unmount();
+  expect(onEnterFired).toBe(false);
+  component.unmount();
+});
+
+test('ScrollTrigger fires onEnter callback when entering viewport', () => {
+  window.resizeTo(1024, 768);
+  window.Element.prototype.getBoundingClientRect = () => {
+    return {
+      left: 0,
+      top: 1572,
+      right: 0,
+      bottom: 0,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    };
+  };
+
+  let onEnterFired = false;
+  const onEnter = () => {
+    onEnterFired = true;
+  };
+
+  component = mount(<ScrollTrigger onEnter={onEnter} />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger should render a specified component', () => {
-    component = mount(<ScrollTrigger component="section" />, {
-      attachTo: document.getElementById('root'),
-    });
-    expect(component.contains(<section></section>)).toBe(true);
-    component.unmount();
+  window.Element.prototype.getBoundingClientRect = () => {
+    return {
+      left: 0,
+      top: 767,
+      right: 0,
+      bottom: 0,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    };
+  };
+  window.scrollTo(0, 768);
+
+  expect(onEnterFired).toBe(true);
+  component.unmount();
+});
+
+test('ScrollTrigger fires onExit callback when exiting viewport', () => {
+  window.resizeTo(1024, 768);
+
+  let onExitFired = false;
+  const onExit = () => {
+    onExitFired = true;
+  };
+
+  component = mount(<ScrollTrigger onExit={onExit} />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger fires onEnter when loaded', () => {
-    let onEnterFired = false;
-    const onEnter = () => {
-      onEnterFired = true;
+  window.Element.prototype.getBoundingClientRect = () => {
+    return {
+      left: 0,
+      top: -2,
+      right: 0,
+      bottom: -1,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 1,
     };
-    component = mount(<ScrollTrigger onEnter={onEnter} />, {
-      attachTo: document.getElementById('root'),
-    });
-    expect(onEnterFired).toBe(true);
-    component.unmount();
+  };
+
+  window.scrollTo(0, 769);
+
+  expect(onExitFired).toBe(true);
+  component.unmount();
+});
+
+test('ScrollTrigger fires onProgress callback while scrolling through viewport', () => {
+  window.resizeTo(1024, 768);
+
+  let onProgressInitial = true;
+  let onProgressCount = 0;
+  const onProgress = () => {
+    if (!onProgressInitial) {
+      onProgressCount++;
+    }
+
+    onProgressInitial = false;
+  };
+
+  component = mount(<ScrollTrigger onProgress={onProgress} throttleScroll={0} />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger _does not_ fire onEnter when loaded with triggerOnLoad = false', () => {
-    let onEnterFired = false;
-    const onEnter = () => {
-      onEnterFired = true;
-    };
-    component = mount(<ScrollTrigger onEnter={onEnter} triggerOnLoad={false} />, {
-      attachTo: document.getElementById('root'),
-    });
-    expect(onEnterFired).toBe(false);
-    component.unmount();
+  window.scrollTo(1, 0);
+  window.scrollTo(2, 0);
+
+  expect(onProgressCount).toBe(2);
+  component.unmount();
+});
+
+test('ScrollTrigger only fires onProgress once due to throttleScroll value', () => {
+  window.resizeTo(1024, 768);
+
+  let onProgressInitial = true;
+  let onProgressCount = 0;
+  const onProgress = () => {
+    if (!onProgressInitial) {
+      onProgressCount++;
+    }
+
+    onProgressInitial = false;
+  };
+
+  component = mount(<ScrollTrigger onProgress={onProgress} />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger _does not_ fire onEnter when loaded outside of viewport', () => {
-    window.resizeTo(1024, 768);
-    window.Element.prototype.getBoundingClientRect = () => {
-      return {
-        left: 0,
-        top: 1572,
-        right: 0,
-        bottom: 0,
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-      };
-    };
+  window.scrollTo(1, 0);
+  window.scrollTo(2, 0);
 
-    let onEnterFired = false;
-    const onEnter = () => {
-      onEnterFired = true;
-    };
+  expect(onProgressCount).toBe(1);
+  component.unmount();
+});
 
-    component = mount(<ScrollTrigger onEnter={onEnter} />, {
-      attachTo: document.getElementById('root'),
-    });
+test('ScrollTrigger fires onProgress callback when browser is resized', () => {
+  window.resizeTo(1024, 768);
 
-    expect(onEnterFired).toBe(false);
-    component.unmount();
+  let onProgressFired = false;
+  const onProgress = () => {
+    onProgressFired = true;
+  };
+
+  component = mount(<ScrollTrigger onProgress={onProgress} />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger fires onEnter callback when entering viewport', () => {
-    window.resizeTo(1024, 768);
-    window.Element.prototype.getBoundingClientRect = () => {
-      return {
-        left: 0,
-        top: 1572,
-        right: 0,
-        bottom: 0,
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-      };
-    };
+  window.resizeTo(320, 568);
 
-    let onEnterFired = false;
-    const onEnter = () => {
-      onEnterFired = true;
-    };
+  expect(onProgressFired).toBe(true);
+  component.unmount();
+});
 
-    component = mount(<ScrollTrigger onEnter={onEnter} />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    window.Element.prototype.getBoundingClientRect = () => {
-      return {
-        left: 0,
-        top: 767,
-        right: 0,
-        bottom: 0,
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-      };
-    };
-    window.scrollTo(0, 768);
-
-    expect(onEnterFired).toBe(true);
-    component.unmount();
+test('ScrollTrigger properly accepts throttleScroll prop change and updates accordingly', () => {
+  component = mount(<ScrollTrigger />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger fires onExit callback when exiting viewport', () => {
-    window.resizeTo(1024, 768);
-
-    let onExitFired = false;
-    const onExit = () => {
-      onExitFired = true;
-    };
-
-    component = mount(<ScrollTrigger onExit={onExit} />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    window.Element.prototype.getBoundingClientRect = () => {
-      return {
-        left: 0,
-        top: -2,
-        right: 0,
-        bottom: -1,
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 1,
-      };
-    };
-
-    window.scrollTo(0, 769);
-
-    expect(onExitFired).toBe(true);
-    component.unmount();
+  component.setProps({
+    throttleScroll: 0,
   });
 
-  it('ScrollTrigger fires onProgress callback while scrolling through viewport', () => {
-    window.resizeTo(1024, 768);
+  expect(component.prop('throttleScroll')).toEqual(0);
+  component.unmount();
+});
 
-    let onProgressInitial = true;
-    let onProgressCount = 0;
-    const onProgress = () => {
-      if (!onProgressInitial) {
-        onProgressCount++;
-      }
-
-      onProgressInitial = false;
-    };
-
-    component = mount(<ScrollTrigger onProgress={onProgress} throttleScroll={0} />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    window.scrollTo(1, 0);
-    window.scrollTo(2, 0);
-
-    expect(onProgressCount).toBe(2);
-    component.unmount();
+test('ScrollTrigger properly accepts throttleResize prop change and updates accordingly', () => {
+  component = mount(<ScrollTrigger />, {
+    attachTo: document.getElementById('root'),
   });
 
-  it('ScrollTrigger only fires onProgress once due to throttleScroll value', () => {
-    window.resizeTo(1024, 768);
-
-    let onProgressInitial = true;
-    let onProgressCount = 0;
-    const onProgress = () => {
-      if (!onProgressInitial) {
-        onProgressCount++;
-      }
-
-      onProgressInitial = false;
-    };
-
-    component = mount(<ScrollTrigger onProgress={onProgress} />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    window.scrollTo(1, 0);
-    window.scrollTo(2, 0);
-
-    expect(onProgressCount).toBe(1);
-    component.unmount();
+  component.setProps({
+    throttleResize: 0,
   });
 
-  it('ScrollTrigger fires onProgress callback when browser is resized', () => {
-    window.resizeTo(1024, 768);
-
-    let onProgressFired = false;
-    const onProgress = () => {
-      onProgressFired = true;
-    };
-
-    component = mount(<ScrollTrigger onProgress={onProgress} />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    window.resizeTo(320, 568);
-
-    expect(onProgressFired).toBe(true);
-    component.unmount();
-  });
-
-  it('ScrollTrigger properly accepts throttleScroll prop change and updates accordingly', () => {
-    component = mount(<ScrollTrigger />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    component.setProps({
-      throttleScroll: 0,
-    });
-
-    expect(component.prop('throttleScroll')).toEqual(0);
-    component.unmount();
-  });
-
-  it('ScrollTrigger properly accepts throttleResize prop change and updates accordingly', () => {
-    component = mount(<ScrollTrigger />, {
-      attachTo: document.getElementById('root'),
-    });
-
-    component.setProps({
-      throttleResize: 0,
-    });
-
-    expect(component.prop('throttleResize')).toEqual(0);
-    component.unmount();
-  });
+  expect(component.prop('throttleResize')).toEqual(0);
+  component.unmount();
 });
