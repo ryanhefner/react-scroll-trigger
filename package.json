@@ -48,6 +48,7 @@
     "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "greenkeeper-lockfile": "^1.14.0",
     "gzip-size": "^4.1.0",
     "jest": "^22.4.2",
     "jest-enzyme": "^6.0.0",
