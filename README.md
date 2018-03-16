@@ -1,4 +1,9 @@
-# react-scroll-trigger
+# 📜 react-scroll-trigger
+
+[![npm version](https://badge.fury.io/js/react-scroll-trigger.svg)](https://badge.fury.io/js/clean-react-props)
+[![npm](https://img.shields.io/npm/l/express.svg)](LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/ryanhefner/react-scroll-trigger/badge.svg?branch=master)](https://coveralls.io/github/ryanhefner/react-scroll-trigger?branch=master)
+[![CircleCI](https://circleci.com/gh/ryanhefner/react-scroll-trigger.svg?style=shield)](https://circleci.com/gh/ryanhefner/react-scroll-trigger)
 
 React component that monitors `scroll` events to trigger callbacks when it enters,
 exits and progresses through the viewport. All callback include the `progress` and
