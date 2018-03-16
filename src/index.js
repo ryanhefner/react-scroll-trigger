@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import omit from 'lomit';
 import throttle from 'lodash.throttle';
 import cleanProps from 'clean-react-props';
 
 class ScrollTrigger extends Component {
-
   constructor(props) {
     super(props);
 
@@ -77,7 +75,7 @@ class ScrollTrigger extends Component {
     const viewportStart = 0;
     const scrollingElement = document.scrollingElement || document.body;
     const viewportEnd = scrollingElement.clientHeight;
-    const inViewport = elementRect.top < viewportEnd && elementRect.bottom > viewportStart;
+    const inViewport = elementRect.top <= viewportEnd && elementRect.bottom >= viewportStart;
 
     const position = window.scrollY;
     const velocity = lastScrollPosition && lastScrollTime
@@ -98,15 +96,15 @@ class ScrollTrigger extends Component {
         }, this);
       }
 
-      this.setState({
-        lastScrollPosition: position,
-        lastScrollTime: Date.now(),
-      });
-
       onProgress({
         progress,
         velocity,
       }, this);
+
+      this.setState({
+        lastScrollPosition: position,
+        lastScrollTime: Date.now(),
+      });
       return;
     }
 
@@ -139,7 +137,7 @@ class ScrollTrigger extends Component {
     } = this.props;
 
     return React.createElement(component, {
-        ...omit(cleanProps(this.props), ['onProgress']),
+        ...cleanProps(this.props, ['onProgress']),
         ref: (element) => {
           this.element = element;
         },

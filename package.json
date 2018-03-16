@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-trigger",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "license": "MIT",
   "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
   "repository": "ryanhefner/react-scroll-trigger",
@@ -25,7 +25,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "node ./tools/build.js",
     "push-release": "git push origin master && git push --tags",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "peerDependencies": {
     "react": ">=15",
@@ -34,33 +34,49 @@
   "dependencies": {
     "clean-react-props": "^0.2.1",
     "lodash.throttle": "^4.1.1",
-    "lomit": "^0.1.1",
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.1",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
-    "babel-preset-latest": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "greenkeeper-lockfile": "^1.14.0",
     "gzip-size": "^4.1.0",
     "jest": "^22.4.2",
+    "jest-enzyme": "^6.0.0",
+    "jsdom": "^11.6.2",
     "pretty-bytes": "^4.0.2",
     "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
+    "regenerator-runtime": "^0.11.1",
     "rollup": "^0.57.0",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^9.0.0",
+    "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-json": "^2.3.0",
-    "rollup-plugin-node-resolve": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.2.0",
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-watch": "^4.3.1"
   },
-  "browserify": {
-    "transform": [
-      "loose-envify"
-    ]
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/tools/jest-setup.js"
+    ],
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
   },
   "keywords": [
     "react",
