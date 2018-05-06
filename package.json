@@ -54,7 +54,7 @@
     "jest": "^22.4.2",
     "jest-enzyme": "^6.0.0",
     "jsdom": "^11.6.2",
-    "pretty-bytes": "^4.0.2",
+    "pretty-bytes": "^5.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
