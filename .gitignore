@@ -7,3 +7,4 @@ umd
 !rollup.config.js
 *.sublime-project
 *.sublime-workspace
+yarn-error.log

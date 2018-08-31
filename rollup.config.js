@@ -25,6 +25,7 @@ const config = {
   plugins: [
     babel({
       exclude: 'node_modules/**',
+      externalHelpers: process.env.BABEL_ENV === 'umd',
     }),
     resolve(),
     commonjs({
