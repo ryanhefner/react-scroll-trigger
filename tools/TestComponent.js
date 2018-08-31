@@ -1,4 +1,4 @@
-import React, { Component } from 'React';
+import React, { Component } from 'react';
 import cleanProps from 'clean-react-props';
 
 class TestComponent extends Component {
