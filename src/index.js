@@ -136,7 +136,9 @@ class ScrollTrigger extends Component {
       component,
     } = this.props;
 
-    return React.createElement(component, {
+    const elementMethod = React.isValidElement(component) ? 'cloneElement' : 'createElement';
+
+    return React[elementMethod](component, {
         ...cleanProps(this.props, ['onProgress']),
         ref: (element) => {
           this.element = element;
@@ -148,7 +150,10 @@ class ScrollTrigger extends Component {
 }
 
 ScrollTrigger.propTypes = {
-  component: PropTypes.node,
+  component: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node,
+  ]),
   throttleResize: PropTypes.number,
   throttleScroll: PropTypes.number,
   triggerOnLoad: PropTypes.bool,
