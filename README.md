@@ -89,6 +89,7 @@ In addition to these properties, all other standard React properites like `class
 be rendered by the `ScrollTrigger`.
 
 * `component:Element | String` - React component or HTMLElement to render as the wrapper for the `ScrollTrigger` (Default: `div`)
+* `containerRef:Object | String` - DOM element instance or string to use for query selecting DOM element. (Default: `document.documentElement`)
 * `throttleResize:Number` - Delay to throttle `resize` calls in milliseconds (Default: `100`)
 * `throttleScroll:Number` - Delay to throttle `scroll` calls in milliseconds (Default: `100`)
 * `triggerOnLoad:Boolean` - Whether or not to trigger the `onEnter` callback on mount (Default: `true`)

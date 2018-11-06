@@ -8,11 +8,11 @@ class ScrollTrigger extends Component {
   constructor(props) {
     super(props);
 
-    this.onScroll = throttle(this.onScroll.bind(this), props.throttleScroll, {
+    this.onScrollThrottled = throttle(this.onScroll.bind(this), props.throttleScroll, {
       trailing: false,
     });
 
-    this.onResize = throttle(this.onResize.bind(this), props.throttleResize, {
+    this.onResizeThrottled = throttle(this.onResize.bind(this), props.throttleResize, {
       trailing: false,
     });
 
@@ -25,29 +25,35 @@ class ScrollTrigger extends Component {
   }
 
   componentDidMount() {
-    addEventListener('resize', this.onResize);
-    addEventListener('scroll', this.onScroll);
+    addEventListener('resize', this.onResizeThrottled);
+    addEventListener('scroll', this.onScrollThrottled);
 
     if (this.props.triggerOnLoad) {
       this.checkStatus();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.throttleScroll !== this.props.throttleScroll) {
-      this.onScroll = throttle(this.onScroll.bind(this, nextProps.throttleScroll));
-      addEventListener('scroll', this.onScroll);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.throttleScroll !== this.props.throttleScroll) {
+      removeEventListener('scroll', this.onScrollThrottled);
+      this.onScrollThrottled = throttle(this.onScroll.bind(this), this.props.throttleScroll, {
+        trailing: false,
+      });
+      addEventListener('scroll', this.onScrollThrottled);
     }
 
-    if (nextProps.throttleResize !== this.props.throttleResize) {
-      this.onResize = throttle(this.onResize.bind(this, nextProps.throttleResize));
-      addEventListener('resize', this.onResize);
+    if (prevProps.throttleResize !== this.props.throttleResize) {
+      removeEventListener('resize', this.onResizeThrottled);
+      this.onResizeThrottled = throttle(this.onResize.bind(this), this.props.throttleResize, {
+        trailing: false,
+      });
+      addEventListener('resize', this.onResizeThrottled);
     }
   }
 
   componentWillUnmount() {
-    removeEventListener('resize', this.onResize);
-    removeEventListener('scroll', this.onScroll);
+    removeEventListener('resize', this.onResizeThrottled);
+    removeEventListener('scroll', this.onScrollThrottled);
   }
 
   onResize() {
@@ -60,6 +66,7 @@ class ScrollTrigger extends Component {
 
   checkStatus() {
     const {
+      containerRef,
       onEnter,
       onExit,
       onProgress,
@@ -73,8 +80,12 @@ class ScrollTrigger extends Component {
     const element = ReactDOM.findDOMNode(this.element);
     const elementRect = element.getBoundingClientRect();
     const viewportStart = 0;
-    const scrollingElement = document.scrollingElement || document.body;
-    const viewportEnd = scrollingElement.clientHeight;
+    const scrollingElement = typeof containerRef === 'string'
+      ? document.querySelector(containerRef)
+      : containerRef;
+    const viewportEnd = containerRef === document.documentElement
+      ? Math.max(containerRef.clientHeight, window.innerHeight || 0)
+      : scrollingElement.clientHeight;
     const inViewport = elementRect.top <= viewportEnd && elementRect.bottom >= viewportStart;
 
     const position = window.scrollY;
@@ -154,6 +165,10 @@ ScrollTrigger.propTypes = {
     PropTypes.element,
     PropTypes.node,
   ]),
+  containerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   throttleResize: PropTypes.number,
   throttleScroll: PropTypes.number,
   triggerOnLoad: PropTypes.bool,
@@ -164,6 +179,7 @@ ScrollTrigger.propTypes = {
 
 ScrollTrigger.defaultProps = {
   component: 'div',
+  containerRef: document.documentElement,
   throttleResize: 100,
   throttleScroll: 100,
   triggerOnLoad: true,
