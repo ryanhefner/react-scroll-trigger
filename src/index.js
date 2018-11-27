@@ -147,7 +147,9 @@ class ScrollTrigger extends Component {
       component,
     } = this.props;
 
-    const elementMethod = React.isValidElement(component) ? 'cloneElement' : 'createElement';
+    const elementMethod = React.isValidElement(component)
+      ? 'cloneElement'
+      : 'createElement';
 
     return React[elementMethod](component, {
         ...cleanProps(this.props, ['onProgress']),
@@ -179,7 +181,7 @@ ScrollTrigger.propTypes = {
 
 ScrollTrigger.defaultProps = {
   component: 'div',
-  containerRef: document.documentElement,
+  containerRef: document ? document.documentElement : 'html',
   throttleResize: 100,
   throttleScroll: 100,
   triggerOnLoad: true,
