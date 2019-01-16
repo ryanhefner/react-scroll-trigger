@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-trigger",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "license": "MIT",
   "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
   "repository": "ryanhefner/react-scroll-trigger",
