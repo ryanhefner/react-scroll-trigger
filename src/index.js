@@ -181,7 +181,7 @@ ScrollTrigger.propTypes = {
 
 ScrollTrigger.defaultProps = {
   component: 'div',
-  containerRef: 'html',
+  containerRef: (typeof document !== 'undefined') ? document.documentElement : 'html',
   throttleResize: 100,
   throttleScroll: 100,
   triggerOnLoad: true,
