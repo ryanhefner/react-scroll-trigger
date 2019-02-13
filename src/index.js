@@ -33,8 +33,8 @@ class ScrollTrigger extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.throttleScroll !== this.props.throttleScroll) {
+  componentDidUpdate({throttleScroll, throttleResize}, prevState) {
+    if (throttleScroll !== this.props.throttleScroll) {
       removeEventListener('scroll', this.onScrollThrottled);
       this.onScrollThrottled = throttle(this.onScroll.bind(this), this.props.throttleScroll, {
         trailing: false,
@@ -42,7 +42,7 @@ class ScrollTrigger extends Component {
       addEventListener('scroll', this.onScrollThrottled);
     }
 
-    if (prevProps.throttleResize !== this.props.throttleResize) {
+    if (throttleResize !== this.props.throttleResize) {
       removeEventListener('resize', this.onResizeThrottled);
       this.onResizeThrottled = throttle(this.onResize.bind(this), this.props.throttleResize, {
         trailing: false,
