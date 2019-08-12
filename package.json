@@ -32,7 +32,7 @@
     "react-dom": ">=15"
   },
   "dependencies": {
-    "clean-react-props": "^0.2.13",
+    "clean-react-props": "^0.3.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2"
   },
