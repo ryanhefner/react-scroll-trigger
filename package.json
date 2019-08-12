@@ -83,7 +83,9 @@
     "setupFiles": [
       "<rootDir>/tools/jest-setup.js"
     ],
-    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "setupFilesAfterEnv": [
+      "./node_modules/jest-enzyme/lib/index.js"
+    ],
     "testURL": "http://localhost"
   },
   "keywords": [
