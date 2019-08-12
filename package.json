@@ -9,6 +9,7 @@
     "es",
     "index.js",
     "src",
+    "types",
     "umd"
   ],
   "directories": {
@@ -17,6 +18,7 @@
   "main": "index.js",
   "module": "es/index.js",
   "jsnext:main": "src/index.js",
+  "types": "types",
   "scripts": {
     "clean": "rm -f index.js && rm -rf es && rm -rf umd",
     "prebuild": "npm run clean",
@@ -25,6 +27,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "node ./tools/build.js",
     "push-release": "git push origin master && git push --tags",
+    "dtslint": "dtslint types",
     "test": "jest"
   },
   "peerDependencies": {
@@ -32,6 +35,8 @@
     "react-dom": ">=15"
   },
   "dependencies": {
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
     "clean-react-props": "^0.3.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2"
@@ -48,6 +53,7 @@
     "babel-plugin-dev-expression": "^0.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "coveralls": "^3.0.6",
+    "dtslint": "^0.7.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "greenkeeper-lockfile": "^1.15.1",
@@ -65,7 +71,8 @@
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "typescript": "^3.4.5"
   },
   "jest": {
     "collectCoverage": true,
@@ -76,7 +83,9 @@
     "setupFiles": [
       "<rootDir>/tools/jest-setup.js"
     ],
-    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "setupFilesAfterEnv": [
+      "./node_modules/jest-enzyme/lib/index.js"
+    ],
     "testURL": "http://localhost"
   },
   "keywords": [
