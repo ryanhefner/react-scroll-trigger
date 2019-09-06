@@ -75,6 +75,39 @@ those elements within the DOM.
   </ScrollTrigger>
 ```
 
+You can also use inside of a scrollable container.
+
+```jsx
+  /** 
+   * Scrollable div container is needed
+   * 
+   * We need the 'ref' from this container div, since this component will be loaded before our 'ref',
+   * is ready I find it easier to store the 'ref' in state. 
+   */
+  const [myRef, setMyRef] = useState();
+  <div ref={r => setMyRef(r)} style={{ height: '300px', overflow: 'scroll'}}>
+    {/** 
+      * ScrollTrigger must use the 'ref' inside of the 'containerRef' prop!
+      *  
+      * Use an array of components. This allows you to trigger when a component
+      * becomes visible within the scrollable div 
+      */}
+    {myObjects.map((obj, index) => {
+      return (
+        <ScrollTrigger                     
+          containerRef={myRef} 
+          onEnter={e => alert(`${obj.attribute} at index ${index} is now visible inside scrollable div!`)} 
+          onExit={e => alert(`${obj.attribute} at index ${index} is no longer visible inside scrollable div!`)} 
+          onProgress={e => alert(`${obj.attribute} Progress: ${e}`)} 
+          key={`${obj.attribute}_${index}`} 
+        >
+          <SomeOtherComponent someProp={obj.attribute} />
+        </ScrollTrigger>
+      )
+    })}
+  </div>
+```
+
 The beauty of this component is its flexibility. I’ve used it to trigger
 AJAX requests based on either the `onEnter` or `progress` of the component within
 the viewport. Or, as a way to control animations or other transitions that you
