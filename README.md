@@ -1,9 +1,11 @@
 # 📜 react-scroll-trigger
 
-[![npm version](https://badge.fury.io/js/react-scroll-trigger.svg)](https://badge.fury.io/js/react-scroll-trigger)
-[![npm](https://img.shields.io/npm/l/express.svg)](LICENSE)
-[![Coverage Status](https://coveralls.io/repos/github/ryanhefner/react-scroll-trigger/badge.svg?branch=master)](https://coveralls.io/github/ryanhefner/react-scroll-trigger?branch=master)
-[![CircleCI](https://circleci.com/gh/ryanhefner/react-scroll-trigger.svg?style=shield)](https://circleci.com/gh/ryanhefner/react-scroll-trigger)
+![npm](https://img.shields.io/npm/v/react-scroll-trigger?style=flat-square)
+![NPM](https://img.shields.io/npm/l/react-scroll-trigger?style=flat-square)
+![npm](https://img.shields.io/npm/dt/react-scroll-trigger?style=flat-square)
+![Coveralls github](https://img.shields.io/coveralls/github/ryanhefner/react-scroll-trigger?style=flat-square)
+![CircleCI](https://img.shields.io/circleci/build/github/ryanhefner/react-scroll-trigger?style=flat-square)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ryanhefner/react-scroll-trigger?style=flat-square)
 
 
 React component that monitors `scroll` events to trigger callbacks when it enters,
