@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
+    "@types/react-dom": "^16.9.6",
     "clean-react-props": "^0.3.4",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2"
