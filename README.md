@@ -1,9 +1,9 @@
 # 📜 react-scroll-trigger
 
-![npm](https://img.shields.io/npm/v/react-scroll-trigger?style=flat-square)
-![NPM](https://img.shields.io/npm/l/react-scroll-trigger?style=flat-square)
-![npm](https://img.shields.io/npm/dt/react-scroll-trigger?style=flat-square)
-![Coveralls github](https://img.shields.io/coveralls/github/ryanhefner/react-scroll-trigger?style=flat-square)
+[![npm](https://img.shields.io/npm/v/react-scroll-trigger?style=flat-square)](https://www.pkgstats.com/pkg:react-scroll-trigger)
+[![NPM](https://img.shields.io/npm/l/react-scroll-trigger?style=flat-square)](https://www.pkgstats.com/pkg:react-scroll-trigger)
+[![npm](https://img.shields.io/npm/dt/react-scroll-trigger?style=flat-square)](https://www.pkgstats.com/pkg:react-scroll-trigger)
+[![Coveralls github](https://img.shields.io/coveralls/github/ryanhefner/react-scroll-trigger?style=flat-square)](https://coveralls.io/github/ryanhefner/react-scroll-trigger)
 ![CircleCI](https://img.shields.io/circleci/build/github/ryanhefner/react-scroll-trigger?style=flat-square)
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ryanhefner/react-scroll-trigger?style=flat-square)
 
