@@ -4,7 +4,21 @@
   "license": "MIT",
   "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
   "repository": "ryanhefner/react-scroll-trigger",
+  "keywords": [
+    "react",
+    "react-component",
+    "scroll",
+    "trigger"
+  ],
   "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
+  "bugs": {
+    "url": "https://github.com/ryanhefner/react-contentful/issues"
+  },
+  "homepage": "https://github.com/ryanhefner/react-contentful#readme",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ryanhefner"
+  },
   "files": [
     "es",
     "index.js",
@@ -87,11 +101,5 @@
       "./node_modules/jest-enzyme/lib/index.js"
     ],
     "testURL": "http://localhost"
-  },
-  "keywords": [
-    "react",
-    "react-component",
-    "scroll",
-    "trigger"
-  ]
+  }
 }
