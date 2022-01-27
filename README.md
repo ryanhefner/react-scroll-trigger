@@ -53,7 +53,7 @@ import ScrollTrigger from 'react-scroll-trigger';
 
     return (
       <ScrollTrigger onEnter={this.onEnterViewport} onExit={this.onExitViewport}>
-        <div className={`container ${visible ? 'container-animate' : ''}`}></div>
+        <div className={`container ${visible ? 'container-animate' : ''}`} />
       </ScrollTrigger>
     );
   }
