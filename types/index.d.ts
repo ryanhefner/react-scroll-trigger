@@ -7,7 +7,7 @@ export interface ScrollTriggerEventArgs {
   velocity: number;
 }
 
-export interface ScrollTrigger extends Component {
+export interface ScrollTriggerProps {
   component?: ReactNode;
   containerRef?: HTMLElement | string;
   throttleResize?: number;
@@ -17,3 +17,7 @@ export interface ScrollTrigger extends Component {
   onExit?: (args: ScrollTriggerEventArgs) => {};
   onProgress?: (args: ScrollTriggerEventArgs) => {};
 }
+
+declare class ScrollTrigger extends Component<ScrollTriggerProps> {}
+
+export default ScrollTrigger;

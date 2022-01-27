@@ -49,7 +49,7 @@
     "react-dom": ">=15"
   },
   "dependencies": {
-    "@types/react": "^16.9.53",
+    "@types/react": "^16.9.54",
     "@types/react-dom": "^16.9.9",
     "clean-react-props": "^0.4.0",
     "lodash.throttle": "^4.1.1",
