@@ -34,7 +34,7 @@
   "jsnext:main": "src/index.js",
   "types": "types",
   "scripts": {
-    "clean": "rm -f index.js && rm -rf es && rm -rf umd",
+    "clean": "rimraf index.js es umd",
     "prebuild": "npm run clean",
     "build": "node ./tools/build.js",
     "watch": "babel ./src -d . --ignore __tests__,**/*.test.js --watch",
@@ -80,6 +80,7 @@
     "react-dom": "^16.14.0",
     "react-test-renderer": "^16.14.0",
     "regenerator-runtime": "^0.13.7",
+    "rimraf": "^3.0.2",
     "rollup": "^2.30.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
