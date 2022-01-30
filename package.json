@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-trigger",
-  "version": "0.6.11",
+  "version": "0.6.12",
   "license": "MIT",
   "description": "React component tied to scroll events with callbacks for enter, exit and progress while scrolling through the viewport.",
   "repository": "ryanhefner/react-scroll-trigger",
@@ -34,7 +34,7 @@
   "jsnext:main": "src/index.js",
   "types": "types",
   "scripts": {
-    "clean": "rm -f index.js && rm -rf es && rm -rf umd",
+    "clean": "rimraf index.js es umd",
     "prebuild": "npm run clean",
     "build": "node ./tools/build.js",
     "watch": "babel ./src -d . --ignore __tests__,**/*.test.js --watch",
@@ -71,7 +71,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "greenkeeper-lockfile": "^1.15.1",
-    "gzip-size": "^5.1.1",
+    "gzip-size": "^6.0.0",
     "jest": "^26.5.3",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^16.4.0",
@@ -80,12 +80,13 @@
     "react-dom": "^16.14.0",
     "react-test-renderer": "^16.14.0",
     "regenerator-runtime": "^0.13.7",
+    "rimraf": "^3.0.2",
     "rollup": "^2.30.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.4",
+    "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.0.3"
   },
   "jest": {
