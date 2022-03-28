@@ -13,9 +13,9 @@ export interface ScrollTriggerProps {
   throttleResize?: number;
   throttleScroll?: number;
   triggerOnLoad?: boolean;
-  onEnter?: (args: ScrollTriggerEventArgs) => {};
-  onExit?: (args: ScrollTriggerEventArgs) => {};
-  onProgress?: (args: ScrollTriggerEventArgs) => {};
+  onEnter?: (args?: ScrollTriggerEventArgs) => void;
+  onExit?: (args?: ScrollTriggerEventArgs) => void;
+  onProgress?: (args?: ScrollTriggerEventArgs) => void;
 }
 
 declare class ScrollTrigger extends Component<ScrollTriggerProps> {}
